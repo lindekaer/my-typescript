@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    {
+      "label": "build",
+      "type": "npm",
+      "script": "build",
+      "presentation": {
+        "reveal": "never"
+      }
+    }
+  ]
+}

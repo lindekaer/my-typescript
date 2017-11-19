@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug TS Express App",
+      "args": [],
+      "cwd": "${workspaceRoot}",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "console": "integratedTerminal",
+      "outFiles": [
+        "${workspaceRoot}/build"
+      ],
+      "preLaunchTask": "build",
+      "program": "${workspaceRoot}/build/index.js",
+      "request": "launch",
+      "runtimeArgs": [
+        "--nolazy"
+      ],
+      "runtimeExecutable": null,
+      "sourceMaps": true,
+      "stopOnEntry": false,
+      "type": "node"
+    }
+  ]
+}
