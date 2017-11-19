@@ -72,8 +72,10 @@
     "start": "node build/index.js",
     "start:prod": "NODE_ENV=production node build/index.js",
     "build": "tsc",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "test": "NODE_ENV=testing tape ./**/**.spec.js"
   },
-  "author": "Theodor C. Listov Lindekaer <theodor.lindekaer@gmail.com> (https://lindekaer.github.io)",
+  "author":
+    "Theodor C. Listov Lindekaer <theodor.lindekaer@gmail.com> (https://lindekaer.github.io)",
   "license": "ISC"
 }
