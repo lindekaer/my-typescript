@@ -9,10 +9,12 @@
     "array-flatten": "1.1.1",
     "body-parser": "1.18.2",
     "bytes": "3.0.0",
+    "compression": "1.7.1",
     "content-disposition": "0.5.2",
     "content-type": "1.0.4",
     "cookie": "0.3.1",
     "cookie-signature": "1.0.6",
+    "cors": "2.8.4",
     "debug": "2.6.9",
     "depd": "1.1.1",
     "destroy": "1.0.4",
@@ -26,6 +28,7 @@
     "finalhandler": "1.1.0",
     "forwarded": "0.1.2",
     "fresh": "0.5.2",
+    "helmet": "3.9.0",
     "http-errors": "1.6.2",
     "iconv-lite": "0.4.19",
     "inherits": "2.0.3",
@@ -75,10 +78,8 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "NODE_ENV=testing tape ./**/**.spec.js",
-    "test-coverage":
-      "NODE_ENV=testing istanbul cover tape ./**/**.spec.js && open -a 'Google Chrome' ./coverage/lcov-report/index.html"
+    "test-coverage": "NODE_ENV=testing istanbul cover tape ./**/**.spec.js && open -a 'Google Chrome' ./coverage/lcov-report/index.html"
   },
-  "author":
-    "Theodor C. Listov Lindekaer <theodor.lindekaer@gmail.com> (https://lindekaer.github.io)",
+  "author": "Theodor C. Listov Lindekaer <theodor.lindekaer@gmail.com> (https://lindekaer.github.io)",
   "license": "ISC"
 }
