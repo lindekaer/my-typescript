@@ -64,6 +64,7 @@
     "@types/express": "4.0.39",
     "@types/knex": "0.0.64",
     "@types/node": "8.0.50",
+    "istanbul": "^0.4.5",
     "nodemon": "1.12.1",
     "tslint": "5.8.0",
     "tslint-config-standard": "7.0.0"
@@ -73,7 +74,9 @@
     "start:prod": "NODE_ENV=production node build/index.js",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "NODE_ENV=testing tape ./**/**.spec.js"
+    "test": "NODE_ENV=testing tape ./**/**.spec.js",
+    "test-coverage":
+      "NODE_ENV=testing istanbul cover tape ./**/**.spec.js && open -a 'Google Chrome' ./coverage/lcov-report/index.html"
   },
   "author":
     "Theodor C. Listov Lindekaer <theodor.lindekaer@gmail.com> (https://lindekaer.github.io)",
