@@ -66,4 +66,5 @@ function configureApp(knex: Knex, app: Application, mode: Mode) {
   // Register routes
   app.use(subdomain('api', apiRouter))
   app.use(subdomain('dashboard', dashboardRouter))
+  app.use((req, res) => res.sendStatus(404))
 }
