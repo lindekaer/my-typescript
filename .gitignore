@@ -1,6 +1,9 @@
+# Directories
 build/
 node_modules/
+coverage/
+
+# Files
 .env
 .DS_Store
-/build
-/coverage
+
