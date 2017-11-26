@@ -18,6 +18,7 @@ import { Application } from 'express-serve-static-core'
 import * as subdomain from 'express-subdomain'
 import apiRouter from './routes/api'
 import dashboardRouter from './routes/dashboard'
+import errorHandler from './routes/error-handler'
 
 /*
 -----------------------------------------------------------------------------------
@@ -67,4 +68,5 @@ function configureApp(knex: Knex, app: Application, mode: Mode) {
   app.use(subdomain('api', apiRouter))
   app.use(subdomain('dashboard', dashboardRouter))
   app.use((req, res) => res.sendStatus(404))
+  app.use(errorHandler)
 }
