@@ -6,22 +6,27 @@
 -----------------------------------------------------------------------------------
 */
 
-import * as server from './server'
-import * as dotenv from 'dotenv'
+import { Router } from 'Express'
+import userRouter from './user'
 
 /*
 -----------------------------------------------------------------------------------
 |
-| Start application
+| API routes
 |
 -----------------------------------------------------------------------------------
 */
 
-const PORT = parseInt(process.env.PORT) || 9000
-const MODE = process.env.NODE_ENV || 'development'
+const router = Router()
 
-if (MODE === 'development') {
-  dotenv.load()
-}
+router.use('/users', userRouter)
 
-server.start(PORT, MODE as server.Mode)
+/*
+-----------------------------------------------------------------------------------
+|
+| Exports
+|
+-----------------------------------------------------------------------------------
+*/
+
+export default router
