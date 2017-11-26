@@ -6,6 +6,7 @@
 -----------------------------------------------------------------------------------
 */
 
+import * as path from 'path'
 import * as express from 'express'
 import * as userService from './services/user'
 import * as database from './database'
@@ -19,6 +20,7 @@ import * as subdomain from 'express-subdomain'
 import apiRouter from './routes/api'
 import dashboardRouter from './routes/dashboard'
 import errorHandler from './routes/error-handler'
+import * as serveFavicon from 'serve-favicon'
 
 /*
 -----------------------------------------------------------------------------------
@@ -63,6 +65,10 @@ function configureApp(knex: Knex, app: Application, mode: Mode) {
   // Set variables on app
   app.locals.knex = knex
   app.locals.NODE_ENV = mode
+
+  // Serve a favicon depending on environment
+  const iconPath = mode === 'development' ? 'logo-dev.png' : 'logo.png'
+  app.use(serveFavicon(path.join(__dirname, '..', iconPath)))
 
   // Register routes
   app.use(subdomain('api', apiRouter))
