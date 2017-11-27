@@ -20,6 +20,7 @@ import * as subdomain from 'express-subdomain'
 import apiRouter from './routes/api'
 import dashboardRouter from './routes/dashboard'
 import errorHandler from './routes/error-handler'
+import httpsHandler from './routes/https-handler'
 import * as serveFavicon from 'serve-favicon'
 
 /*
@@ -71,6 +72,7 @@ function configureApp(knex: Knex, app: Application, mode: Mode) {
   app.use(serveFavicon(path.join(__dirname, '..', iconPath)))
 
   // Register routes
+  app.use(httpsHandler)
   app.use(subdomain('api', apiRouter))
   app.use(subdomain('dashboard', dashboardRouter))
   app.use((req, res) => res.sendStatus(404))
