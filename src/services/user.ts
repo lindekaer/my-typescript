@@ -17,13 +17,10 @@ import * as generic from './generic'
 */
 
 export interface IUser {
-  name: string
-  age: number
+  _id?: string
+  username: string
+  password: string
   email: string
-  interests?: string[]
-  meta?: {
-    [key: string]: any
-  }
 }
 
 /*
@@ -34,7 +31,7 @@ export interface IUser {
 -----------------------------------------------------------------------------------
 */
 
-const DB_TABLE = 'user'
+export const DB_TABLE = 'user'
 
 export const fetch = generic.fetch<IUser>(DB_TABLE)
 export const fetchAll = generic.fetchAll<IUser>(DB_TABLE)
