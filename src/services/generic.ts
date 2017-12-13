@@ -17,7 +17,8 @@ import * as Knex from 'knex'
 */
 
 export const fetch = <T>(dbTable) => async (knex: Knex, _id: string): Promise<T> => {
-  return knex(dbTable).where('_id', _id)
+  const [entry] = await knex(dbTable).where('_id', _id)
+  return entry
 }
 
 export const fetchAll = <T>(dbTable) => async (knex: Knex): Promise<T[]> => {
@@ -25,18 +26,19 @@ export const fetchAll = <T>(dbTable) => async (knex: Knex): Promise<T[]> => {
 }
 
 export const createAndReturn = <T>(dbTable) => async (knex: Knex, entry: T): Promise<T> => {
-  return knex(dbTable)
-    .insert(entry, 'id')
+  const [dbEntry] = await knex(dbTable)
+    .insert(entry)
     .returning('*')
+  return dbEntry
 }
 
 export const updateAndReturn = <T>(dbTable) => async (
   knex: Knex,
-  id: string,
+  _id: string,
   entry: Partial<T>,
 ): Promise<T> => {
   const [updatedEntry] = await knex(dbTable)
-    .where({ id })
+    .where({ _id })
     .update(entry)
     .returning('*')
   return updatedEntry

@@ -6,24 +6,26 @@
 -----------------------------------------------------------------------------------
 */
 
-import * as app from './app'
-import * as dotenv from 'dotenv'
+import * as Joi from 'joi'
 
 /*
 -----------------------------------------------------------------------------------
 |
-| Start application
+| Validation middleware
 |
 -----------------------------------------------------------------------------------
 */
 
-const PORT = parseInt(process.env.PORT) || 9000
-const MODE = process.env.NODE_ENV
-
-if (!MODE) throw new Error('Please specify MODE as environment variable')
-
-if (MODE === 'development') {
-  dotenv.load()
+const validationOptions = {
+  abortEarly: false,
+  presence: 'required' as 'required',
 }
 
-app.create(PORT, MODE as app.Mode)
+export default (schema: Joi.Schema) => {
+  return (req, res, next) => {
+    Joi.validate(req.body, schema, validationOptions, (err, value) => {
+      if (err) next(err)
+      else next()
+    })
+  }
+}

@@ -6,8 +6,8 @@
 
 ```
 psql
-  > CREATE DATABASE my-typescript
-  > CREATE DATABASE my-typescript-testing
+  > CREATE DATABASE my_typescript
+  > CREATE DATABASE my_typescript_testing
   > CREATE EXTENSION "uuid-ossp";
 ```
 
@@ -18,3 +18,7 @@ knex migrate:latest
 knex migrate:rollback
 knex migrate:make [MIGRATION_NAME]
 ```
+
+## TODO
+
+* Make email and username on user unique
