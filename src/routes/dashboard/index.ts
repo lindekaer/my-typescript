@@ -6,7 +6,9 @@
 -----------------------------------------------------------------------------------
 */
 
-import { Router } from 'Express'
+import * as path from 'path'
+import * as express from 'express'
+import { Application } from 'express-serve-static-core'
 
 /*
 -----------------------------------------------------------------------------------
@@ -16,9 +18,19 @@ import { Router } from 'Express'
 -----------------------------------------------------------------------------------
 */
 
-const router = Router()
+const register = (app: Application) => {
+  const router = express.Router({
+    caseSensitive: app.get('case sensitive routing'),
+    strict: app.get('strict routing'),
+  })
 
-router.get('/', (req, res) => res.send('Hello!'))
+  const assetsPath = path.join(__dirname, '../../..', 'react-app', 'build')
+  const appPath = path.join(__dirname, '../../..', 'react-app', 'build', 'index.html')
+  router.use(express.static(assetsPath))
+  router.get('*', (req, res) => res.sendFile(appPath))
+
+  return router
+}
 
 /*
 -----------------------------------------------------------------------------------
@@ -28,4 +40,4 @@ router.get('/', (req, res) => res.send('Hello!'))
 -----------------------------------------------------------------------------------
 */
 
-export default router
+export default register
