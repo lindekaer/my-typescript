@@ -9,6 +9,7 @@
 import { merge as _merge } from 'lodash'
 import * as faker from 'faker'
 import * as userService from './services/user'
+import * as bookService from './services/book'
 
 /*
 -----------------------------------------------------------------------------------
@@ -34,6 +35,29 @@ export const mockDB = knex => {
           username: faker.internet.userName(),
           password: faker.internet.password(),
           email: faker.internet.email(),
+        },
+        overrides,
+      )
+    },
+
+    newBook(overrides = {}) {
+      return closeout<bookService.IBook>(
+        bookService,
+        {
+          title: faker.lorem.sentence(),
+          description: faker.lorem.paragraph(),
+          author: {
+            firstname: faker.name.firstName(),
+            lastname: faker.name.lastName(),
+            nationality: faker.address.countryCode(),
+          },
+          pages: faker.random.number(),
+          isbn: faker.random.uuid(),
+          languages: {
+            [faker.random.locale()]: true,
+            [faker.random.locale()]: true,
+            [faker.random.locale()]: true,
+          },
         },
         overrides,
       )
